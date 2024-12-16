@@ -1,0 +1,111 @@
+.table-info-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.2rem;
+  padding: 1rem;
+  margin-bottom: 0.4rem;
+  
+  .info-card {
+    background: #2d3032;
+    border-radius: 6px;
+    padding: 1rem;
+    transition: transform 0.2s;
+    
+    &:hover {
+      transform: translateY(-2px);
+    }
+    
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      
+      .card-icon {
+        font-size: 1.6rem;
+      }
+      
+      h3 {
+        color: #fabd2f;
+        margin: 0;
+        font-size: 1.1rem;
+      }
+    }
+    
+    p {
+      color: #ebdbb2;
+      font-size: 0.9rem;
+      margin: 0.5rem 0;
+    }
+    
+    .card-fields {
+      margin-top: 0.4rem;
+      
+      small {
+        color: #a89984;
+        display: block;
+        margin-bottom: 0.4rem;
+        font-size: 0.75rem;
+      }
+      
+      .fields-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        
+        .field-tag {
+          background: #1d2021;
+          color: #83a598;
+          padding: 0.2rem 0.5rem;
+          border-radius: 3px;
+          font-size: 0.75rem;
+        }
+      }
+    }
+  }
+} 
+
+.suggestion-cards {
+  display: flex;
+  overflow-x: auto;
+  gap: 0.8rem;
+  padding: 0.5rem;
+  padding-left:0;
+  padding-right:0;
+  border-radius:10px;
+  scroll-behavior: smooth;
+  white-space: nowrap;
+  
+  &::-webkit-scrollbar {
+    height: 0;
+    width: 0;
+  }
+  
+  .suggestion-card {
+    background: #2d3032;
+    border-radius: 4px;
+    padding: 0.5rem 0.8rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex: 0 0 auto;
+    
+    &:hover {
+      background: #363a3d;
+      transform: translateY(-2px);
+    }
+    
+    .suggestion-icon {
+      font-size: 0.9rem;
+    }
+    
+    p {
+      color: #83a598;
+      font-size: 0.85rem;
+      margin: 0;
+      white-space: nowrap;
+    }
+  }
+} 
