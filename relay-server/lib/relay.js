@@ -105,6 +105,24 @@ export class RealtimeRelay {
       this.log(`Relaying "${event.type}" to Client`);
       ws.send(JSON.stringify(event));
     });
+        client.addTool(
+      {
+        name: 'export_sql_to_csv',
+        description: 'Exports the current SQL query results to a CSV file',
+        parameters: {
+          type: 'object',
+          properties: {
+            filename: {
+              type: 'string',
+              description: 'Name for the exported CSV file (optional)',
+            },
+          },
+        },
+      },
+      async ({ filename }) => {
+        return 'Exporting SQL results to CSV...';
+      }
+    );
     client.addTool(
       {
         name: 'execute_sql',
@@ -122,7 +140,6 @@ export class RealtimeRelay {
       },
       async ({ query }) => {
         const result = executeQuery(query);
-        ws.send(JSON.stringify({ type: 'hello', data: 'test' }));
         this.log('runing query...')
         // Enviamos el evento al cliente usando ws.send
         ws.send(JSON.stringify({

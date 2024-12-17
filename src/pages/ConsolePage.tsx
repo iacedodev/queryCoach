@@ -12,7 +12,6 @@ const LOCAL_RELAY_SERVER_URL: string = process.env.REACT_APP_LOCAL_RELAY_SERVER_
 const OPENAI_API_KEY = process.env.REACT_APP_OPENAI_API_KEY || localStorage.getItem('tmp::voice_api_key');
 
 import { useEffect, useRef, useCallback, useState, memo } from 'react';
-import { IgsLineChart } from '../components/IgsLineChart';
 
 import { RealtimeClient } from '@openai/realtime-api-beta';
 import { ItemType } from '@openai/realtime-api-beta/dist/lib/client.js';
@@ -25,11 +24,9 @@ import { Button } from '../components/button/Button';
 import { Toggle } from '../components/toggle/Toggle';
 
 import './ConsolePage.scss';
-import { Radar } from 'react-chartjs-2';
 import { Chart as ChartJS, RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend } from 'chart.js';
 import ReactMarkdown from 'react-markdown';
 import { TypewriterText } from '../components/typewriter/TypewriterText';
-import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import * as showdown from 'showdown';
 import { SQLResultTable } from '../components/SQLResultTable';
@@ -48,63 +45,6 @@ const markdownConverter = new showdown.Converter({
 });
 
 ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend);
-
-interface HealthData {
-  current: {
-    alimentacion: number;
-    psicosalud: number;
-    cancer: number;
-    corazon: number;
-    tabaco: number;
-    hepatico: number;
-    osteomuscular: number;
-    patientName: string;
-    igs: number;
-  };
-  future: {
-    alimentacion: number;
-    psicosalud: number;
-    cancer: number;
-    corazon: number;
-    tabaco: number;
-    hepatico: number;
-    osteomuscular: number;
-    igs: number;
-  };
-}
-
-// Add these functions after the existing imports
-const HEALTH_DATA_STORAGE_KEY = 'health_assistant_data';
-
-const saveHealthDataToStorage = (data: HealthData) => {
-  try {
-    localStorage.setItem(HEALTH_DATA_STORAGE_KEY, JSON.stringify(data));
-  } catch (error) {
-    console.error('Error saving health data to localStorage:', error);
-  }
-};
-
-const loadHealthDataFromStorage = (): HealthData | null => {
-  try {
-    const storedData = localStorage.getItem(HEALTH_DATA_STORAGE_KEY);
-    return storedData ? JSON.parse(storedData) : null;
-  } catch (error) {
-    console.error('Error loading health data from localStorage:', error);
-    return null;
-  }
-};
-
-
-
-
-
-
-
-
-
-
-
-
 
   const options = {
     layout: {
@@ -157,22 +97,6 @@ const loadHealthDataFromStorage = (): HealthData | null => {
     }
   };
 
-/**
- * Type for result from get_weather() function call
- */
-interface Coordinates {
-  lat: number;
-  lng: number;
-  location?: string;
-  temperature?: {
-    value: number;
-    units: string;
-  };
-  wind_speed?: {
-    value: number;
-    units: string;
-  };
-}
 
 /**
  * Type for all event logs
@@ -347,6 +271,7 @@ export function ConsolePage() {
     setCurrentQuery('');
     setSqlResults([]);
     setSqlExplanation('');
+    setTheoryQuestion('');
     setHasQueryExplanation(false);
 
     const client = clientRef.current;
@@ -814,7 +739,7 @@ export function ConsolePage() {
       <div className="content-top">
         <div className="content-title">
           <img src="/icon-aitaly.svg" />
-          <span>Asistente de salud</span>
+          <span>Query Coach</span>
           </div>
         <div className="content-api-key">
           {!LOCAL_RELAY_SERVER_URL && (
@@ -1026,7 +951,7 @@ export function ConsolePage() {
         <div className="content-right">
           <div className={`content-block map ${hasQueryExplanation ? 'recommendations-active' : ''}`}>
             <div className="content-block-title bottom">
-              {currentQuery ? `Mostrando ${sqlResults.length} resultados` : 'Query viewer'}
+              {currentQuery ? `Mostrando ${sqlResults.length} resultados` : 'Visor de consultas'}
             </div>
             <div className="right-panel">
               <div className="sql-results-section">
@@ -1051,7 +976,7 @@ export function ConsolePage() {
           </div>
           <div className={`content-block kv ${hasQueryExplanation ? 'recommendations-active' : ''}`}>
             <div className="content-block-title top">
-              {!theoryQuestion && !currentQuery ? 'Query guide' : ''}
+              {!theoryQuestion && !currentQuery ? 'Asistente de consultas' : ''}
               {currentQuery}
               {theoryQuestion || ''}
             </div>

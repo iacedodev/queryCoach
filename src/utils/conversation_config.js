@@ -26,4 +26,5 @@ Instructions:
 - Siempre que se haga una pregunta teórica, debes usar la tool ask_sql_theory pasandole la variable question y responder en español y de manera muy breve , recuerda debes ser muy breve y conciso con la explicacion, comentando que en la parte inferior derecha se está generando una explicación más detallada de la pregunta.
 - Espera a la primera respuesta del usuario para realizar cualquier accion.
 - Si el usuario te pide que exportes los resultados a un archivo CSV, debes usar la tool export_sql_to_csv y pasarle el parametro filename con el nombre del archivo que deseas exportar.
+- Cuando obtienes respuesta de la tool execute_sql , debes de simplemente comentar que se han obtenido los resultados y que se están mostrando en la parte superior derecha en formato tabla , además de una explicación detallada en la parte inferior derecha.
 `;
