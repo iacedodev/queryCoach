@@ -51,8 +51,8 @@ El asistente está diseñado para funcionar como un profesor de bases de datos q
 
 ### Características Principales
 
-- **Ejecución de Consultas**: Permite ejecutar consultas SQL en tiempo real
-- **Explicaciones Detalladas**: Genera explicaciones pedagógicas de cada consulta
+- **Ejecución de Consultas**: Permite ejecutar consultas SQL en tiempo real usando lenguaje natural
+- **Explicaciones Detalladas**: Genera explicaciones detalladas de cada consulta
 - **Exportación de Datos**: Permite exportar resultados en formato CSV
 - **Visualización de Esquemas**: Muestra la estructura de la base de datos
 - **Sugerencias Interactivas**: Proporciona ejemplos y mejores prácticas
