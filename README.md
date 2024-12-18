@@ -11,8 +11,7 @@ Esta aplicación es un asistente educativo interactivo diseñado para ayudar a e
 
 1. Clona el repositorio:
    ```
-   git clone https://github.com/tu-usuario/sql-assistant.git
-   cd sql-assistant
+   git clone https://github.com/iacedodev/queryCoach.git
    ```
 
 2. Instala las dependencias:
